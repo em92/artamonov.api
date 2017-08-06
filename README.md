@@ -2,6 +2,6 @@
 
 Модуль помогает организовать API-интерфейс
 
-[Документация](https://gitlab.com/artamonov.denis/artamonov.api/wikis/home)
+[Документация](https://github.com/ArtamonovDenis/artamonov.api/wiki)
 
 [Маркетплейс 1С-Битрикс](http://marketplace.1c-bitrix.ru/solutions/artamonov.api/)
