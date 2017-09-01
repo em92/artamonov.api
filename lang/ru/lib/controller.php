@@ -1,3 +1,3 @@
 <?php
-$MESS['CLASS_NOT_FOUND'] = 'Íåò ìåòîäîâ äëÿ îáðàáîòêè îáúåêòà: #OBJECT#';
-$MESS['METHOD_NOT_FOUND'] = 'Îáúåêò #OBJECT# íå ìîæåò áûòü îáðàáîòàí ìåòîäîì #METHOD#';
+$MESS['CLASS_NOT_FOUND'] = 'ÐÐµÑ‚ Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð² Ð´Ð»Ñ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸: #OBJECT#';
+$MESS['METHOD_NOT_FOUND'] = '#OBJECT# Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð½ Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð¼ #METHOD#';

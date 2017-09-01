@@ -17,7 +17,7 @@ class Response
     {
         self::setHeaders();
         header('HTTP/1.0 200');
-        echo json_encode(array('status' => 200, 'result' => $data));
+        echo json_encode(['status' => 200, 'result' => $data]);
         die();
     }
 
@@ -27,7 +27,7 @@ class Response
 
         $errorText = ($errorText) ? $errorText : 'No Result';
         header('HTTP/1.0 200');
-        echo json_encode(array('status' => 200, 'error' => $errorText));
+        echo json_encode(['status' => 200, 'error' => $errorText]);
         die();
     }
 
@@ -37,7 +37,7 @@ class Response
 
         $errorText = ($errorText) ? $errorText : 'Bad Request';
         header('HTTP/1.0 400');
-        echo json_encode(array('status' => 400, 'error' => $errorText));
+        echo json_encode(['status' => 400, 'error' => $errorText]);
         die();
     }
 
@@ -45,7 +45,7 @@ class Response
     {
         self::setHeaders();
         header('HTTP/1.0 403');
-        echo json_encode(array('status' => 403, 'error' => 'Forbidden'));
+        echo json_encode(['status' => 403, 'error' => 'Forbidden']);
         die();
     }
 }

@@ -6,9 +6,12 @@ namespace Artamonov\Api;
 
 class Init
 {
+    const GEOIP = 'Geoip';
+
     private $parameter;
     private $pathApi;
     public static $realIp;
+
 
     public function __construct()
     {
@@ -26,6 +29,9 @@ class Init
 
             // Check filters
             if ($this->checkFilters()) {
+
+                // Set headers
+                $this->setHeaders();
 
                 // Run router/dispatch
                 $router = new Router();
@@ -88,11 +94,13 @@ class Init
 
     private function checkFilters()
     {
-        return (!$this->checkFilterCountry() || !$this->checkFilterAddress()) ? false : true;
+        $result = (!$this->checkFilterCountry() || !$this->checkFilterAddress() || !$this->checkAccessHttps()) ? false : true;
+
+        return $result;
     }
     private function checkFilterCountry()
     {
-        $result = true;
+        $access = true;
 
         if ($this->getParameter()->getValue('USE_LIST_COUNTRY_FILTER') == 'Y') {
 
@@ -106,15 +114,15 @@ class Init
             }
 
             if (!in_array($this->getCountryCode(), $ar)) {
-                $result = false;
+                $access = false;
             }
         }
 
-        return $result;
+        return $access;
     }
     private function checkFilterAddress()
     {
-        $result = true;
+        $access = true;
 
         if ($this->getParameter()->getValue('USE_BLACK_LIST_ADDRESS_FILTER') == 'Y') {
 
@@ -129,7 +137,7 @@ class Init
 
             if (in_array($this->getRealIpAddr(), $arBlack)) {
 
-                $result = false;
+                $access = false;
             }
         }
 
@@ -144,15 +152,38 @@ class Init
                 $item = trim($item);
             }
 
-            $result = (in_array($this->getRealIpAddr(), $arWhite)) ? true : false;
+            $access = (in_array($this->getRealIpAddr(), $arWhite)) ? true : false;
         }
 
-        return $result;
+        return $access;
+    }
+    private function checkAccessHttps()
+    {
+        $access = true;
+
+        if ($this->getParameter()->getValue('ONLY_HTTPS_EXCHANGE') == 'Y' && $_SERVER['SERVER_PORT'] != 443) {
+            $access = false;
+        }
+
+        return $access;
     }
 
     public function getCountryCode()
     {
-        return ($countryCode = geoip_country_code_by_name(self::$realIp)) ? strtoupper($countryCode) : 'RU';
+        // Default country
+        $defaultCountryCode = 'RU';
+
+        // Check library availability geoip
+        if (self::checkLibraryAvailability(self::GEOIP)) {
+
+            $result = ($countryCode = strtoupper(geoip_country_code_by_name(self::$realIp))) ? $countryCode : $defaultCountryCode;
+
+        } else {
+
+            $result = 'Error: the '.self::GEOIP.' library was not found';
+        }
+
+        return $result;
     }
     public function getRealIpAddr()
     {
@@ -175,4 +206,56 @@ class Init
         return self::$realIp;
     }
 
+    // HEADERS
+
+    private function setHeaders()
+    {
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type');
+
+        // Cross domain
+        header('Access-Control-Allow-Origin: '.$_SERVER['SERVER_NAME']);
+
+        if ($this->getParameter()->getValue('USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER') == 'Y') {
+
+            $ar = $this->getParameter()->getValue('WHITE_LIST_DOMAIN_ACCESS_CONTROL_ALLOW_ORIGIN');
+
+            if (strpos($ar, '*') !== false) {
+
+                header('Access-Control-Allow-Origin: *');
+
+            } else {
+
+                $ar = explode(';', $ar);
+                $ar = array_diff($ar, ['']);
+
+                foreach ($ar as &$item) {
+
+                    $item = trim($item);
+
+                    if ($item == $_SERVER['HTTP_ORIGIN']) {
+
+                        header('Access-Control-Allow-Origin: '.$item);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    // EXTENSIONS
+    public static function checkLibraryAvailability($libraryCode)
+    {
+        $result = false;
+
+        // Installed extensions
+        $extensions = get_loaded_extensions();
+
+        if ($exist = array_search(strtolower($libraryCode), $extensions)) {
+            $result = true;
+        }
+
+        return $result;
+    }
 }

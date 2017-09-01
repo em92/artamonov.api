@@ -4,16 +4,26 @@ use Bitrix\Main\Localization\Loc;
 ?>
 
 <tr>
-    <td width='50%' valign='middle'><?=Loc::getMessage('SUPPORT_LINK_TITLE')?><td>
-    <td width='50%' valign='middle'>
+    <td width='45%' valign='middle'><?=Loc::getMessage('SUPPORT_LINK_TITLE')?><td>
+    <td width='55%' valign='middle'>
         <a href="<?=Loc::getMessage('SUPPORT_LINK')?>" target="_blank"><?=Loc::getMessage('SUPPORT_LINK_TEXT')?></a>
+        <?ShowJSHint(Loc::getMessage('SUPPORT_LINK_HINT'))?>
     <td>
 </tr>
 
 <tr>
-    <td width='50%' valign='middle'><?=Loc::getMessage('SUPPORT_DOCUMENTATION_LINK_TITLE')?><td>
-    <td width='50%' valign='middle'>
+    <td width='45%' valign='middle'><?=Loc::getMessage('SUPPORT_DOCUMENTATION_LINK_TITLE')?><td>
+    <td width='55%' valign='middle'>
         <a href="<?=Loc::getMessage('SUPPORT_DOCUMENTATION_LINK')?>" target="_blank"><?=Loc::getMessage('SUPPORT_DOCUMENTATION_LINK_TEXT')?></a>
+        <?ShowJSHint(Loc::getMessage('SUPPORT_DOCUMENTATION_LINK_HINT'))?>
+    <td>
+</tr>
+
+<tr>
+    <td width='45%' valign='middle'><?=Loc::getMessage('SUPPORT_FEEDBACK_LINK_TITLE')?><td>
+    <td width='55%' valign='middle'>
+        <a href="<?=Loc::getMessage('SUPPORT_FEEDBACK_LINK')?>" target="_blank"><?=Loc::getMessage('SUPPORT_FEEDBACK_LINK_TEXT')?></a>
+    <?ShowJSHint(Loc::getMessage('SUPPORT_FEEDBACK_LINK_HINT'))?>
     <td>
 </tr>
 
@@ -21,8 +31,8 @@ use Bitrix\Main\Localization\Loc;
 <tr><td colspan="4">&nbsp;</td></tr>
 
 <tr>
-    <td width='50%' valign='middle'><?=Loc::getMessage('OPTION_SUPPORT_USE_LOG_TITLE')?><td>
-    <td width='50%' valign='middle'>
+    <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_SUPPORT_USE_LOG_TITLE')?><td>
+    <td width='55%' valign='middle'>
         <?
         $ar = [
             'REFERENCE'    => [
@@ -41,8 +51,8 @@ use Bitrix\Main\Localization\Loc;
 </tr>
 
 <tr>
-    <td width='50%' valign='middle'><?=Loc::getMessage('OPTION_SUPPORT_LOG_PATH_TITLE')?><td>
-    <td width='50%' valign='middle'>
+    <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_SUPPORT_LOG_PATH_TITLE')?><td>
+    <td width='55%' valign='middle'>
         <input type='text' name='OPTION_SUPPORT_LOG_PATH' size='40' value='<?=$options->getValue('SUPPORT_LOG_PATH')?>'>
         <?ShowJSHint(Loc::getMessage('OPTION_SUPPORT_LOG_PATH_HINT'))?>
     <td>

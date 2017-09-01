@@ -1,82 +1,111 @@
 <?php
-$MESS['PAGE_TITLE'] = 'Настройки';
+$MESS['PAGE_TITLE'] = 'РќР°СЃС‚СЂРѕР№РєРё';
 
-$MESS['TAB_MAIN_TITLE'] = 'Настройки';
-$MESS['TAB_SECURITY_TITLE'] = 'Безопасность';
-$MESS['TAB_SUPPORT_TITLE'] = 'Поддержка';
+$MESS['TAB_MAIN_TITLE'] = 'РќР°СЃС‚СЂРѕР№РєРё';
+$MESS['TAB_SECURITY_TITLE'] = 'Р‘РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ';
+$MESS['TAB_SUPPORT_TITLE'] = 'РџРѕРґРґРµСЂР¶РєР°';
 
-$MESS['TAB_MAIN_DESCRIPTION'] = 'Основные настройки';
-$MESS['TAB_SECURITY_DESCRIPTION'] = 'Настройки безопасности';
-$MESS['TAB_SUPPORT_DESCRIPTION'] = 'Поддержка модуля';
+$MESS['TAB_MAIN_DESCRIPTION'] = 'РћСЃРЅРѕРІРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё';
+$MESS['TAB_SECURITY_DESCRIPTION'] = 'РќР°СЃС‚СЂРѕР№РєРё Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё';
+$MESS['TAB_SUPPORT_DESCRIPTION'] = 'РџРѕРґРґРµСЂР¶РєР° РјРѕРґСѓР»СЏ';
 
-$MESS['OPTION_USE_RESTFUL_API'] = 'Использовать RESTful API';
-$MESS['OPTION_USE_RESTFUL_API_SELECT_TITLE_1'] = 'Отключено';
-$MESS['OPTION_USE_RESTFUL_API_SELECT_TITLE_2'] = 'Включено';
+$MESS['OPTION_USE_RESTFUL_API'] = 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ RESTful API';
+$MESS['OPTION_USE_RESTFUL_API_SELECT_TITLE_1'] = 'РћС‚РєР»СЋС‡РµРЅРѕ';
+$MESS['OPTION_USE_RESTFUL_API_SELECT_TITLE_2'] = 'Р’РєР»СЋС‡РµРЅРѕ';
 $MESS['OPTION_USE_RESTFUL_API_SELECT_ID_1'] = 'N';
 $MESS['OPTION_USE_RESTFUL_API_SELECT_ID_2'] = 'Y';
-$MESS['OPTION_USE_RESTFUL_API_SELECT_HINT'] = 'Если параметр включён, тогда будет возможность использовать RESTful API на сайте.';
+$MESS['OPTION_USE_RESTFUL_API_SELECT_HINT'] = 'Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ РІРєР»СЋС‡С‘РЅ, С‚РѕРіРґР° Р±СѓРґРµС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ RESTful API РЅР° СЃР°Р№С‚Рµ.';
 
-$MESS['OPTION_PATH_RESTFUL_API'] = 'Путь RESTful API';
-$MESS['OPTION_PATH_RESTFUL_HINT'] = 'Путь по которому будет доступен интерфейс.<br><br>Пример: <b>/api/</b>';
+$MESS['OPTION_PATH_RESTFUL_API'] = 'РџСѓС‚СЊ RESTful API';
+$MESS['OPTION_PATH_RESTFUL_HINT'] = 'РџСѓС‚СЊ РїРѕ РєРѕС‚РѕСЂРѕРјСѓ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРµРЅ РёРЅС‚РµСЂС„РµР№СЃ.<br><br>РџСЂРёРјРµСЂ: <b>/api/</b>';
 
-$MESS['OPTION_USE_VERSIONS'] = 'Использовать версии';
-$MESS['OPTION_USE_VERSIONS_SELECT_TITLE_1'] = 'Отключено';
-$MESS['OPTION_USE_VERSIONS_SELECT_TITLE_2'] = 'Включено';
+$MESS['OPTION_USE_VERSIONS'] = 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІРµСЂСЃРёРё';
+$MESS['OPTION_USE_VERSIONS_SELECT_TITLE_1'] = 'РћС‚РєР»СЋС‡РµРЅРѕ';
+$MESS['OPTION_USE_VERSIONS_SELECT_TITLE_2'] = 'Р’РєР»СЋС‡РµРЅРѕ';
 $MESS['OPTION_USE_VERSIONS_SELECT_ID_1'] = 'N';
 $MESS['OPTION_USE_VERSIONS_SELECT_ID_2'] = 'Y';
-$MESS['OPTION_USE_VERSIONS_SELECT_HINT'] = 'Если параметр включён, тогда будет учитываться версия контроллера обрабатывающего запрос.<br><br>Например: /api/<b>v1</b>/ - в этом случае интерфейс будет подключать контроллер, который располагается по пути: [папка модуля]/lib/controllers/<b>v1</b>/[название контроллера].';
+$MESS['OPTION_USE_VERSIONS_SELECT_HINT'] = 'Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ РІРєР»СЋС‡С‘РЅ, С‚РѕРіРґР° Р±СѓРґРµС‚ СѓС‡РёС‚С‹РІР°С‚СЊСЃСЏ РІРµСЂСЃРёСЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂР° РѕР±СЂР°Р±Р°С‚С‹РІР°СЋС‰РµРіРѕ Р·Р°РїСЂРѕСЃ.<br><br>РќР°РїСЂРёРјРµСЂ: /api/<b>v1</b>/ - РІ СЌС‚РѕРј СЃР»СѓС‡Р°Рµ РёРЅС‚РµСЂС„РµР№СЃ Р±СѓРґРµС‚ РїРѕРґРєР»СЋС‡Р°С‚СЊ РєРѕРЅС‚СЂРѕР»Р»РµСЂ, РєРѕС‚РѕСЂС‹Р№ СЂР°СЃРїРѕР»Р°РіР°РµС‚СЃСЏ РїРѕ РїСѓС‚Рё: [РїР°РїРєР° РјРѕРґСѓР»СЏ]/lib/controllers/<b>v1</b>/[РЅР°Р·РІР°РЅРёРµ РєРѕРЅС‚СЂРѕР»Р»РµСЂР°].';
 
 
-$MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER'] = 'Использовать фильтр по белым IP-адресам';
-$MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_SELECT_TITLE_1'] = 'Отключен';
-$MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_SELECT_TITLE_2'] = 'Включен';
+$MESS['OPTION_OPERATING_MODE'] = 'Р РµР¶РёРј СЂР°Р±РѕС‚С‹';
+$MESS['OPTION_OPERATING_MODE_SELECT_TITLE_1'] = 'РћР±СЉРµРєС‚РЅРѕ-РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ (РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ)';
+$MESS['OPTION_OPERATING_MODE_SELECT_TITLE_2'] = 'Р¤Р°Р№Р»РѕРІС‹Р№';
+$MESS['OPTION_OPERATING_MODE_SELECT_TITLE_3'] = 'РћР±СЉРµРєС‚РЅРѕ-РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ + Р¤Р°Р№Р»РѕРІС‹Р№';
+$MESS['OPTION_OPERATING_MODE_SELECT_ID_1'] = 'OBJECT_ORIENTED';
+$MESS['OPTION_OPERATING_MODE_SELECT_ID_2'] = 'FILE';
+$MESS['OPTION_OPERATING_MODE_SELECT_ID_3'] = 'OBJECT_ORIENTED_FILE';
+$MESS['OPTION_OPERATING_MODE_HINT'] = 'РћР±СЉРµРєС‚РЅРѕ-РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ - Р·Р°РїСЂРѕСЃ Р±СѓРґРµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊСЃСЏ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРј РєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРј (РѕР±СЉРµРєС‚РѕРј РєР»Р°СЃСЃР°) Рё РјРµС‚РѕРґРѕРј РєР»Р°СЃСЃР°, РєРѕС‚РѕСЂС‹Р№ СЂР°СЃРїРѕР»РѕРіР°РµС‚СЃСЏ РІ РїР°РїРєРµ РјРѕРґСѓР»СЏ (СЃРј. РґРѕРєСѓРјРµРЅС‚Р°С†РёСЋ).<br><br>Р¤Р°Р№Р»РѕРІС‹Р№ - Р·Р°РїСЂРѕСЃ Р±СѓРґРµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊСЃСЏ РєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРј, РєРѕС‚РѕСЂС‹Р№ СЂР°СЃРїРѕР»Р°РіР°РµС‚СЃСЏ РїРѕ "РѕРґРЅРѕРёРјС‘РЅРЅРѕРјСѓ" С„РёР·РёС‡РµСЃРєРѕРјСѓ РїСѓС‚Рё (СЃРј. РґРѕРєСѓРјРµРЅС‚Р°С†РёСЋ).<br><br>РћР±СЉРµРєС‚РЅРѕ-РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ + Р¤Р°Р№Р»РѕРІС‹Р№ - РїСЂРё Р·Р°РїСЂРѕСЃРµ Р±СѓРґРµС‚ РїСЂРѕРёСЃС…РѕРґРёС‚СЊ РїРѕРёСЃРє РєРѕРЅС‚СЂРѕР»Р»РµСЂР° РІ РїР°РїРєРµ РјРѕРґСѓР»СЏ, РїСЂРё РЅРµСѓРґР°С‡РЅРѕР№ Р¶Рµ РїРѕРїС‹С‚РєРµ, РїРѕРёСЃРє Р±СѓРґРµС‚ РїСЂРѕРёСЃС…РѕРґРёС‚СЊ РїРѕ "РѕРґРЅРѕРёРјС‘РЅРЅРѕРјСѓ" С„РёР·РёС‡РµСЃРєРѕРјСѓ РїСѓС‚Рё (СЃРј. РґРѕРєСѓРјРµРЅС‚Р°С†РёСЋ).';
+
+
+$MESS['OPTION_USE_ONLY_HTTPS_EXCHANGE_TITLE'] = 'РћР±РјРµРЅ С‚РѕР»СЊРєРѕ С‡РµСЂРµР· https-РїСЂРѕС‚РѕРєРѕР»';
+$MESS['OPTION_ONLY_HTTPS_EXCHANGE_HINT'] = 'Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ Р°РєС‚РёРІРµРЅ, С‚РѕРіРґР° РІСЃРµ Р·Р°РїСЂРѕСЃС‹, РєРѕС‚РѕСЂС‹Рµ РїСЂРёС…РѕРґСЏС‚ РЅР° API-РёРЅС‚РµСЂС„РµР№СЃ С‡РµСЂРµР· http-РїСЂРѕС‚РѕРєРѕР» - Р±СѓРґСѓС‚ РѕС‚РєР»РѕРЅРµРЅС‹.<br><br>Р’РЅРёРјР°РЅРёРµ: СЃР°Р№С‚ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РґРѕСЃС‚СѓРїРµРЅ РїРѕ Р°РґСЂРµСЃСѓ HTTPS://'.$_SERVER['SERVER_NAME'].'.<br><br>РџСЂРёРјРµС‡Р°РЅРёРµ: HTTPS РѕР±РµСЃРїРµС‡РёРІР°РµС‚ С€РёС„СЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… РїСЂРё РёС… РїРµСЂРµРґР°С‡Рё.';
+
+$MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_SELECT_TITLE_1'] = 'РћС‚РєР»СЋС‡РµРЅ';
+$MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_SELECT_TITLE_2'] = 'Р’РєР»СЋС‡РµРЅ';
 $MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_SELECT_ID_1'] = 'N';
 $MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_SELECT_ID_2'] = 'Y';
-$MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_HINT'] = 'Если параметр включён, тогда при обработке входящего запроса будет проверяться источник запроса.';
-$MESS['OPTION_WHITE_LIST_ADDRESS_TITLE'] = 'Список белых адресов';
-$MESS['OPTION_WHITE_LIST_ADDRESS_HINT'] = 'Список разрешенных адресов, с которых API-интерфейс будет обрабатывать входящие запросы.<br>Адреса нужно писать через точку с запятой.<br><br>Пример: 192.168.0.1; 192.168.0.2; 192.168.0.3';
+$MESS['OPTION_USE_WHITE_LIST_ADDRESS_FILTER_HINT'] = 'Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ РІРєР»СЋС‡С‘РЅ, С‚РѕРіРґР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІС…РѕРґСЏС‰РµРіРѕ Р·Р°РїСЂРѕСЃР° Р±СѓРґРµС‚ РїСЂРѕРІРµСЂСЏС‚СЊСЃСЏ РёСЃС‚РѕС‡РЅРёРє Р·Р°РїСЂРѕСЃР°.';
+$MESS['OPTION_WHITE_LIST_ADDRESS_TITLE'] = 'РЎРїРёСЃРѕРє Р±РµР»С‹С… Р°РґСЂРµСЃРѕРІ';
+$MESS['OPTION_WHITE_LIST_ADDRESS_HINT'] = 'РЎРїРёСЃРѕРє СЂР°Р·СЂРµС€РµРЅРЅС‹С… Р°РґСЂРµСЃРѕРІ, СЃ РєРѕС‚РѕСЂС‹С… API-РёРЅС‚РµСЂС„РµР№СЃ Р±СѓРґРµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РІС…РѕРґСЏС‰РёРµ Р·Р°РїСЂРѕСЃС‹.<br>РђРґСЂРµСЃР° РЅСѓР¶РЅРѕ РїРёСЃР°С‚СЊ С‡РµСЂРµР· С‚РѕС‡РєСѓ СЃ Р·Р°РїСЏС‚РѕР№.<br><br>РџСЂРёРјРµСЂ: 192.168.0.1; 192.168.0.2; 192.168.0.3';
 
-$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER'] = 'Использовать фильтр по чёрным IP-адресам';
-$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_SELECT_TITLE_1'] = 'Отключен';
-$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_SELECT_TITLE_2'] = 'Включен';
+$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER'] = 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„РёР»СЊС‚СЂ РїРѕ С‡С‘СЂРЅС‹Рј IP-Р°РґСЂРµСЃР°Рј';
+$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_SELECT_TITLE_1'] = 'РћС‚РєР»СЋС‡РµРЅ';
+$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_SELECT_TITLE_2'] = 'Р’РєР»СЋС‡РµРЅ';
 $MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_SELECT_ID_1'] = 'N';
 $MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_SELECT_ID_2'] = 'Y';
-$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_HINT'] = 'Если параметр включён, тогда при обработке входящего запроса будет проверяться источник запроса.';
-$MESS['OPTION_BLACK_LIST_ADDRESS_TITLE'] = 'Список чёрных адресов';
-$MESS['OPTION_BLACK_LIST_ADDRESS_HINT'] = 'Список запрещенных адресов, с которых API-интерфейс НЕ будет обрабатывать входящие запросы.<br>Адреса нужно писать через точку с запятой.<br><br>Пример: 192.168.0.1; 192.168.0.2; 192.168.0.3';
+$MESS['OPTION_USE_BLACK_LIST_ADDRESS_FILTER_HINT'] = 'Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ РІРєР»СЋС‡С‘РЅ, С‚РѕРіРґР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІС…РѕРґСЏС‰РµРіРѕ Р·Р°РїСЂРѕСЃР° Р±СѓРґРµС‚ РїСЂРѕРІРµСЂСЏС‚СЊСЃСЏ РёСЃС‚РѕС‡РЅРёРє Р·Р°РїСЂРѕСЃР°.';
+$MESS['OPTION_BLACK_LIST_ADDRESS_TITLE'] = 'РЎРїРёСЃРѕРє С‡С‘СЂРЅС‹С… Р°РґСЂРµСЃРѕРІ';
+$MESS['OPTION_BLACK_LIST_ADDRESS_HINT'] = 'РЎРїРёСЃРѕРє Р·Р°РїСЂРµС‰РµРЅРЅС‹С… Р°РґСЂРµСЃРѕРІ, СЃ РєРѕС‚РѕСЂС‹С… API-РёРЅС‚РµСЂС„РµР№СЃ РќР• Р±СѓРґРµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РІС…РѕРґСЏС‰РёРµ Р·Р°РїСЂРѕСЃС‹.<br>РђРґСЂРµСЃР° РЅСѓР¶РЅРѕ РїРёСЃР°С‚СЊ С‡РµСЂРµР· С‚РѕС‡РєСѓ СЃ Р·Р°РїСЏС‚РѕР№.<br><br>РџСЂРёРјРµСЂ: 192.168.0.1; 192.168.0.2; 192.168.0.3';
 
 
-$MESS['OPTION_USE_LIST_COUNTRY_FILTER'] = 'Использовать фильтр по коду страны';
-$MESS['OPTION_USE_LIST_COUNTRY_FILTER_SELECT_TITLE_1'] = 'Отключен';
-$MESS['OPTION_USE_LIST_COUNTRY_FILTER_SELECT_TITLE_2'] = 'Включен';
+$MESS['OPTION_USE_LIST_COUNTRY_FILTER'] = 'РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„РёР»СЊС‚СЂ РїРѕ РєРѕРґСѓ СЃС‚СЂР°РЅС‹';
+$MESS['OPTION_USE_LIST_COUNTRY_FILTER_SELECT_TITLE_1'] = 'РћС‚РєР»СЋС‡РµРЅ';
+$MESS['OPTION_USE_LIST_COUNTRY_FILTER_SELECT_TITLE_2'] = 'Р’РєР»СЋС‡РµРЅ';
 $MESS['OPTION_USE_LIST_COUNTRY_FILTER_SELECT_ID_1'] = 'N';
 $MESS['OPTION_USE_LIST_COUNTRY_FILTER_SELECT_ID_2'] = 'Y';
-$MESS['OPTION_USE_LIST_COUNTRY_FILTER_HINT'] = 'Если параметр включён, тогда при обработке входящего запроса будет проверяться код страны источника запроса.';
-$MESS['OPTION_WHITE_LIST_COUNTRY_TITLE'] = 'Список кодов стран';
-$MESS['OPTION_WHITE_LIST_COUNTRY_HINT'] = 'Список разрешенных кодов стран, с которых API-интерфейс будет обрабатывать входящие запросы.<br>Коды нужно писать через точку с запятой.<br><br>Пример: RU, KZ, BY';
+$MESS['OPTION_USE_LIST_COUNTRY_FILTER_HINT'] = 'Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ РІРєР»СЋС‡С‘РЅ, С‚РѕРіРґР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІС…РѕРґСЏС‰РµРіРѕ Р·Р°РїСЂРѕСЃР° Р±СѓРґРµС‚ РїСЂРѕРІРµСЂСЏС‚СЊСЃСЏ РєРѕРґ СЃС‚СЂР°РЅС‹ РёСЃС‚РѕС‡РЅРёРєР° Р·Р°РїСЂРѕСЃР°.';
+$MESS['OPTION_WHITE_LIST_COUNTRY_TITLE'] = 'РЎРїРёСЃРѕРє РєРѕРґРѕРІ СЃС‚СЂР°РЅ';
+$MESS['OPTION_WHITE_LIST_COUNTRY_HINT'] = 'РЎРїРёСЃРѕРє СЂР°Р·СЂРµС€РµРЅРЅС‹С… РєРѕРґРѕРІ СЃС‚СЂР°РЅ, СЃ РєРѕС‚РѕСЂС‹С… API-РёРЅС‚РµСЂС„РµР№СЃ Р±СѓРґРµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РІС…РѕРґСЏС‰РёРµ Р·Р°РїСЂРѕСЃС‹.<br>РљРѕРґС‹ РЅСѓР¶РЅРѕ РїРёСЃР°С‚СЊ С‡РµСЂРµР· С‚РѕС‡РєСѓ СЃ Р·Р°РїСЏС‚РѕР№.<br><br>РџСЂРёРјРµСЂ: RU; KZ; BY';
 
 
-$MESS['SUPPORT_LINK_TITLE'] = 'Вопросы и предложения по модулю';
+$MESS['OPTION_USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER'] = 'РљСЂРѕСЃСЃ-РґРѕРјРµРЅРЅС‹Рµ Р·Р°РїСЂРѕСЃС‹';
+$MESS['OPTION_USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER_SELECT_TITLE_1'] = 'РћС‚РєР»СЋС‡РµРЅС‹';
+$MESS['OPTION_USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER_SELECT_TITLE_2'] = 'Р Р°Р·СЂРµС€РµРЅС‹';
+$MESS['OPTION_USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER_SELECT_ID_1'] = 'N';
+$MESS['OPTION_USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER_SELECT_ID_2'] = 'Y';
+$MESS['OPTION_USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER_HINT'] = 'Р•СЃР»Рё РїР°СЂР°РјРµС‚СЂ РІРєР»СЋС‡С‘РЅ, С‚РѕРіРґР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РІС…РѕРґСЏС‰РµРіРѕ Р·Р°РїСЂРѕСЃР° Р±СѓРґРµС‚ РїСЂРѕРІРµСЂСЏС‚СЊСЃСЏ РґРѕРјРµРЅ РёСЃС‚РѕС‡РЅРёРєР° Р·Р°РїСЂРѕСЃР°.';
+$MESS['OPTION_WHITE_LIST_DOMAIN_ACCESS_CONTROL_ALLOW_ORIGIN_TITLE'] = 'РЎРїРёСЃРѕРє РґРѕРјРµРЅРѕРІ';
+$MESS['OPTION_WHITE_LIST_DOMAIN_ACCESS_CONTROL_ALLOW_ORIGIN_HINT'] = 'РЎРїРёСЃРѕРє СЂР°Р·СЂРµС€РµРЅРЅС‹С… РґРѕРјРµРЅРѕРІ, СЃ РєРѕС‚РѕСЂС‹С… API-РёРЅС‚РµСЂС„РµР№СЃ Р±СѓРґРµС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РІС…РѕРґСЏС‰РёРµ Р·Р°РїСЂРѕСЃС‹.<br>Р”РѕРјРµРЅС‹ РЅСѓР¶РЅРѕ РїРёСЃР°С‚СЊ С‡РµСЂРµР· С‚РѕС‡РєСѓ СЃ Р·Р°РїСЏС‚РѕР№.<br><br>РџСЂРёРјРµСЂ: http://site1.com; http://site2.com<br><br>РњРѕР¶РЅРѕ СѓРєР°Р·Р°С‚СЊ СЃРёРјРІРѕР» Р—РІС‘Р·РґРѕС‡РєР° (*), РІ СЌС‚РѕРј СЃР»СѓС‡Р°Рµ РёРЅС‚РµСЂС„РµР№СЃ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРµРЅ РІСЃРµРј РґРѕРјРµРЅР°Рј.';
+
+
+
+$MESS['SUPPORT_LINK_TITLE'] = 'Р’РѕРїСЂРѕСЃС‹ Рё РїСЂРµРґР»РѕР¶РµРЅРёСЏ РїРѕ РјРѕРґСѓР»СЋ';
 $MESS['SUPPORT_LINK'] = 'http://artamonov.pro';
-$MESS['SUPPORT_LINK_TEXT'] = 'Перейти на сайт';
+$MESS['SUPPORT_LINK_TEXT'] = 'РџРµСЂРµР№С‚Рё';
+$MESS['SUPPORT_LINK_HINT'] = 'Р”Р»СЏ СЃРІСЏР·Рё СЃ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРј РјРѕРґСѓР»СЏ';
 
-$MESS['SUPPORT_DOCUMENTATION_LINK_TITLE'] = 'Документация';
-$MESS['SUPPORT_DOCUMENTATION_LINK'] = 'https://gitlab.com/artamonov.denis/artamonov.api/wikis/home';
-$MESS['SUPPORT_DOCUMENTATION_LINK_TEXT'] = 'Перейти на сайт';
+$MESS['SUPPORT_DOCUMENTATION_LINK_TITLE'] = 'Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ';
+$MESS['SUPPORT_DOCUMENTATION_LINK'] = 'https://github.com/ArtamonovDenis/artamonov.api/wiki';
+$MESS['SUPPORT_DOCUMENTATION_LINK_TEXT'] = 'РџРµСЂРµР№С‚Рё';
+$MESS['SUPPORT_DOCUMENTATION_LINK_HINT'] = 'РћРїРёСЃР°РЅРёРµ СЂР°Р±РѕС‚С‹ РјРѕРґСѓР»СЏ СЃ РїСЂРёРјРµСЂР°РјРё СЂРµР°Р»РёР·Р°С†РёРё';
 
-$MESS['OPTION_SUPPORT_USE_LOG_TITLE'] = 'Логирование входящих запросов';
-$MESS['OPTION_SUPPORT_USE_LOG_SELECT_TITLE_1'] = 'Отключено';
-$MESS['OPTION_SUPPORT_USE_LOG_SELECT_TITLE_2'] = 'Включено';
+$MESS['SUPPORT_FEEDBACK_LINK_TITLE'] = 'РћС‚Р·С‹РІС‹';
+$MESS['SUPPORT_FEEDBACK_LINK'] = 'http://marketplace.1c-bitrix.ru/solutions/artamonov.api/#tab-rating-link';
+$MESS['SUPPORT_FEEDBACK_LINK_TEXT'] = 'РџРµСЂРµР№С‚Рё';
+$MESS['SUPPORT_FEEDBACK_LINK_HINT'] = 'РќРµ Р·Р°Р±С‹РІР°Р№С‚Рµ РѕСЃС‚Р°РІР»СЏС‚СЊ СЃРІРѕРё РѕС‚Р·С‹РІС‹. РЈ Р’Р°СЃ СЌС‚Рѕ РѕС‚РЅРёРјРµС‚ РІСЃРµРіРѕ Р»РёС€СЊ 1-3 РјРёРЅСѓС‚С‹, Р° РґР»СЏ РЅР°СЃ СЌС‚Рѕ Р±РѕР»СЊС€Р°СЏ РјРѕС‚РёРІР°С†РёСЏ Рє СЂР°Р·РІРёС‚РёСЋ Рё СѓР»СѓС‡С€РµРЅРёСЋ РїСЂРѕРґСѓРєС‚Р°.';
+
+$MESS['OPTION_SUPPORT_USE_LOG_TITLE'] = 'Р›РѕРіРёСЂРѕРІР°РЅРёРµ РІС…РѕРґСЏС‰РёС… Р·Р°РїСЂРѕСЃРѕРІ';
+$MESS['OPTION_SUPPORT_USE_LOG_SELECT_TITLE_1'] = 'РћС‚РєР»СЋС‡РµРЅРѕ';
+$MESS['OPTION_SUPPORT_USE_LOG_SELECT_TITLE_2'] = 'Р’РєР»СЋС‡РµРЅРѕ';
 $MESS['OPTION_SUPPORT_USE_LOG_SELECT_ID_1'] = 'N';
 $MESS['OPTION_SUPPORT_USE_LOG_SELECT_ID_2'] = 'Y';
-$MESS['OPTION_SUPPORT_USE_LOG_HINT'] = 'Логирование всех входящих запросов в файл';
+$MESS['OPTION_SUPPORT_USE_LOG_HINT'] = 'Р›РѕРіРёСЂРѕРІР°РЅРёРµ РІСЃРµС… РІС…РѕРґСЏС‰РёС… Р·Р°РїСЂРѕСЃРѕРІ РІ С„Р°Р№Р»';
 
-$MESS['OPTION_SUPPORT_LOG_PATH_TITLE'] = 'Путь до лог-файла';
-$MESS['OPTION_SUPPORT_LOG_PATH_HINT'] = 'Путь по которому будет доступен лог-файл.<br><br>Пример: <b>/logs/api.log</b><br><br>Примечание: файл и директория должны быть созданы заранее, а также должны быть настроены права на запись в файл.';
+$MESS['OPTION_SUPPORT_LOG_PATH_TITLE'] = 'РџСѓС‚СЊ РґРѕ Р»РѕРі-С„Р°Р№Р»Р°';
+$MESS['OPTION_SUPPORT_LOG_PATH_HINT'] = 'РџСѓС‚СЊ РїРѕ РєРѕС‚РѕСЂРѕРјСѓ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРµРЅ Р»РѕРі-С„Р°Р№Р».<br><br>РџСЂРёРјРµСЂ: <b>/logs/api.log</b><br><br>РџСЂРёРјРµС‡Р°РЅРёРµ: С„Р°Р№Р» Рё РґРёСЂРµРєС‚РѕСЂРёСЏ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЃРѕР·РґР°РЅС‹ Р·Р°СЂР°РЅРµРµ, Р° С‚Р°РєР¶Рµ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РЅР°СЃС‚СЂРѕРµРЅС‹ РїСЂР°РІР° РЅР° Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р».';
 
 
-
-$MESS['BTN_OPTIONS_SAVE'] = 'Сохранить';
-$MESS['BTN_OPTIONS_RESTORE'] = 'Сбросить';
-$MESS['OPTIONS_SAVED'] = 'Настройки сохранены';
-$MESS['OPTIONS_RESTORED'] = 'Настройки сброшены';
+$MESS['BTN_OPTIONS_SAVE'] = 'РЎРѕС…СЂР°РЅРёС‚СЊ';
+$MESS['BTN_OPTIONS_RESTORE'] = 'РЎР±СЂРѕСЃРёС‚СЊ';
+$MESS['OPTIONS_SAVED'] = 'РќР°СЃС‚СЂРѕР№РєРё СЃРѕС…СЂР°РЅРµРЅС‹';
+$MESS['OPTIONS_RESTORED'] = 'РќР°СЃС‚СЂРѕР№РєРё СЃР±СЂРѕС€РµРЅС‹';

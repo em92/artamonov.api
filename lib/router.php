@@ -6,6 +6,7 @@ namespace Artamonov\Api;
 
 class Router extends Init
 {
+    private static $apiPath;
     private static $apiVersion;
     private static $controller;
     private static $action;
@@ -19,7 +20,8 @@ class Router extends Init
     {
         $path_parts = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 
-        // Delete module name
+        // Api path
+        self::$apiPath = strtolower(current($path_parts));
         array_shift($path_parts);
 
         // Get version
@@ -48,14 +50,8 @@ class Router extends Init
         // Get params
         switch (parent::getMethod()) {
 
-            case 'POST':
-                $path_parts = $_POST;
-                break;
-
             case 'GET':
-
                 if (count($path_parts) > 0) {
-
                     // if original get-request
                     if (strstr($_SERVER['REQUEST_URI'], '?', false) !== false) {
 
@@ -73,39 +69,32 @@ class Router extends Init
                         $path_parts = $tmp;
                     }
                 }
+                break;
 
+            case 'POST':
+                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
+                    $path_parts = json_decode(file_get_contents('php://input'), true);
+                } else {
+                    $path_parts = $_POST;
+                }
                 break;
 
             case 'PUT':
-                $_PUT = [];
-
-                $putdata = file_get_contents('php://input');
-                $putdata = explode('&', $putdata);
-
-                foreach($putdata as $pair) {
-                    $item = explode('=', $pair);
-                    if(count($item) == 2) {
-                        $_PUT[urldecode($item[0])] = urldecode($item[1]);
-                    }
+                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
+                    $path_parts = json_decode(file_get_contents('php://input'), true);
                 }
-
-                $path_parts = $_PUT;
                 break;
 
             case 'DELETE':
-                $_DELETE = [];
-
-                $deleteData = file_get_contents('php://input');
-                $deleteData = explode('&', $deleteData);
-
-                foreach($deleteData as $pair) {
-                    $item = explode('=', $pair);
-                    if(count($item) == 2) {
-                        $_DELETE[urldecode($item[0])] = urldecode($item[1]);
-                    }
+                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
+                    $path_parts = json_decode(file_get_contents('php://input'), true);
                 }
+                break;
 
-                $path_parts = $_DELETE;
+            case 'OPTIONS':
+                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
+                    $path_parts = json_decode(file_get_contents('php://input'), true);
+                }
                 break;
         }
 
@@ -135,7 +124,10 @@ class Router extends Init
     {
         return (parent::getParameter()->getValue('USE_VERSIONS') == 'Y') ? true : false;
     }
-
+    public function getApiPath()
+    {
+        return self::$apiPath;
+    }
     public function getApiVersion()
     {
         return self::$apiVersion;

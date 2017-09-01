@@ -50,6 +50,10 @@ class Options
     {
         $arResult = [];
 
+        if (!isset($data['OPTION_ONLY_HTTPS_EXCHANGE'])) {
+            $data['OPTION_ONLY_HTTPS_EXCHANGE'] = 'N';
+        }
+
         foreach ($data as $k => $v) {
             if (preg_match('/^'.self::OPTION_CODE_PREFIX.'/', strtoupper($k))) {
                 $arResult[str_replace(self::OPTION_CODE_PREFIX, '', $k)] = $v;
