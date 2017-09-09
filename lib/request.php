@@ -22,6 +22,10 @@ class Request extends Router
             $ar['API_VERSION'] = parent::getApiVersion();
         }
 
+        if ($_SERVER['HTTP_AUTHORIZATION_TOKEN']) {
+            $ar['AUTHORIZATION_TOKEN'] = $_SERVER['HTTP_AUTHORIZATION_TOKEN'];
+        }
+
         return $ar;
     }
 }

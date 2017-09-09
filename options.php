@@ -25,16 +25,15 @@ $APPLICATION->SetTitle(Loc::getMessage('PAGE_TITLE').' "'.Loc::getMessage('API_M
 require_once $_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_admin_after.php';
 
 if ($_POST) {
+
     $data = &$_POST;
 
-    # Сохраняем настройки
     if ($data['options-save']) {
         if ($options->save($data)) {
             echo CAdminMessage::ShowNote(Loc::getMessage('OPTIONS_SAVED'));
         }
     }
 
-    # Сбрасываем настройки
     if ($data['options-restore']) {
         if ($options->restore()) {
             echo CAdminMessage::ShowNote(Loc::getMessage('OPTIONS_RESTORED'));
@@ -42,9 +41,18 @@ if ($_POST) {
     }
 }
 
+if ($_GET['generateToken'] == 'Y') {
+    $count = $options->generateTokens();
+
+    if ($count > 0) {
+        echo CAdminMessage::ShowNote(Loc::getMessage('TOKENS_GENERATED', ['#COUNT#' => $count]));
+    }
+
+}
+
 $tabControl->Begin();
 ?>
-    <form method='POST' name='<?=$options->getFormName()?>' action='<?=$APPLICATION->GetCurUri()?>'>
+    <form method='POST' name='<?=$options->getFormName()?>' action='<?=str_replace('&generateToken=Y', '', $APPLICATION->GetCurUri())?>'>
 
         <?php
         echo bitrix_sessid_post();

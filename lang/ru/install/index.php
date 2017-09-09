@@ -1,10 +1,10 @@
 <?php
 $MESS['API_MODULE_ID'] = 'artamonov.api';
 $MESS['API_MODULE_NAME'] = 'RESTful API';
-$MESS['API_MODULE_DESCRIPTION'] = 'РњРѕРґСѓР»СЊ РїРѕРјРѕРіР°РµС‚ РѕСЂРіР°РЅРёР·РѕРІР°С‚СЊ API-РёРЅС‚РµСЂС„РµР№СЃ';
-$MESS['API_PARTNER'] = 'РђСЂС‚Р°РјРѕРЅРѕРІ Р”РµРЅРёСЃ';
+$MESS['API_MODULE_DESCRIPTION'] = 'Модуль помогает организовать API-интерфейс';
+$MESS['API_PARTNER'] = 'Артамонов Денис';
 $MESS['API_PARTNER_URI'] = 'http://artamonov.pro/';
-$MESS['API_INSTALL_TITLE'] = 'РЈСЃС‚Р°РЅРѕРІРєР° РјРѕРґСѓР»СЏ';
-$MESS['API_INSTALL_MESSAGE'] = 'РњРѕРґСѓР»СЊ "RESTful API" СѓСЃРїРµС€РЅРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅ<br>РќРµ Р·Р°Р±СѓРґСЊС‚Рµ РїСЂРѕРїРёСЃР°С‚СЊ РєРѕРЅСЃС‚СЂСѓРєС†РёСЋ РІ С„Р°Р№Р» /bitrix/php_interface/init.php';
-$MESS['API_UNINSTALL_TITLE'] = 'РЈРґР°Р»РµРЅРёРµ РјРѕРґСѓР»СЏ';
-$MESS['API_UNINSTALL_MESSAGE'] = 'РњРѕРґСѓР»СЊ "RESTful API" СѓСЃРїРµС€РЅРѕ СѓРґР°Р»С‘РЅ';
+$MESS['API_INSTALL_TITLE'] = 'Установка модуля';
+$MESS['API_INSTALL_MESSAGE'] = 'Модуль "RESTful API" успешно установлен<br>Не забудьте прописать конструкцию в файл /bitrix/php_interface/init.php';
+$MESS['API_UNINSTALL_TITLE'] = 'Удаление модуля';
+$MESS['API_UNINSTALL_MESSAGE'] = 'Модуль "RESTful API" успешно удалён';

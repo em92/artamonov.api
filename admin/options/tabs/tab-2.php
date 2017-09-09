@@ -19,6 +19,37 @@ $geoIpExist = Api::checkLibraryAvailability(Api::GEOIP);
 <tr><td colspan="4">&nbsp;</td></tr>
 <tr><td colspan="4">&nbsp;</td></tr>
 
+
+<tr>
+    <td width='45%' valign='top'><?=Loc::getMessage('OPTION_USE_AUTH_TOKEN_TITLE')?><td>
+    <td width='55%' valign='middle'>
+        <?
+        echo InputType('checkbox', 'OPTION_USE_AUTH_TOKEN', 'Y', $options->getValue('USE_AUTH_TOKEN'));
+        ShowJSHint(Loc::getMessage('OPTION_AUTH_TOKEN_HINT', ['#FIELD_NAME_RESTFUL_API_TOKEN#' => $options::USER_FIELD_CODE_API_TOKEN], LANG));
+        ?>
+    <td>
+</tr>
+
+<tr>
+    <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_TOKEN_KEYWORD_TITLE')?><td>
+    <td width='55%' valign='middle'>
+        <input type='text' name='OPTION_TOKEN_KEYWORD' size='20' value='<?=$options->getValue('TOKEN_KEYWORD')?>'>
+        <?ShowJSHint(Loc::getMessage('OPTION_TOKEN_KEYWORD_HINT'))?>
+    <td>
+</tr>
+
+<tr>
+    <td width='45%' valign='middle'><?=Loc::getMessage('TOKEN_GENERATE_TITLE')?><td>
+    <td width='55%' valign='middle'>
+        <a href="<?=str_replace('&generateToken=Y', '', $APPLICATION->GetCurUri())?>&generateToken=Y"><?=Loc::getMessage('GENERATE_LINK_TEXT')?></a>
+        <?ShowJSHint(Loc::getMessage('TOKEN_GENERATE_HINT'))?>
+    <td>
+</tr>
+
+<tr><td colspan="4">&nbsp;</td></tr>
+<tr><td colspan="4">&nbsp;</td></tr>
+
+
 <tr>
     <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_USE_LIST_COUNTRY_FILTER')?><td>
     <td width='55%' valign='middle'>

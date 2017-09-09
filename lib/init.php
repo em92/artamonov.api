@@ -4,6 +4,9 @@
 namespace Artamonov\Api;
 
 
+use Bitrix\Main\Application;
+use \Bitrix\Main\Authentication;
+
 class Init
 {
     const GEOIP = 'Geoip';
@@ -39,8 +42,15 @@ class Init
 
             } else {
 
-                // Close access
-                Response::DenyAccess();
+                // Cross domain
+                if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS' && $_SERVER['HTTP_ORIGIN']) {
+                    $this->setHeadersPreQuery();
+
+                } else {
+
+                    // Close access
+                    Response::DenyAccess();
+                }
             }
 
             die();
@@ -94,7 +104,7 @@ class Init
 
     private function checkFilters()
     {
-        $result = (!$this->checkFilterCountry() || !$this->checkFilterAddress() || !$this->checkAccessHttps()) ? false : true;
+        $result = (!$this->checkToken() || !$this->checkFilterCountry() || !$this->checkFilterAddress() || !$this->checkAccessHttps()) ? false : true;
 
         return $result;
     }
@@ -167,6 +177,34 @@ class Init
 
         return $access;
     }
+    private function checkToken()
+    {
+        $access = true;
+
+        if ($this->getParameter()->getValue('USE_AUTH_TOKEN') == 'Y') {
+
+            $access = false;
+
+            if ($_SERVER['HTTP_AUTHORIZATION_TOKEN']) {
+
+                $token = $_SERVER['HTTP_AUTHORIZATION_TOKEN'];
+                $keyword = str_replace(' ', '', $this->getParameter()->getValue('TOKEN_KEYWORD')).':';
+                $checkKeyword = substr($token, 0, strlen($keyword));
+
+                if ($checkKeyword != $keyword) {
+                    return false;
+                }
+
+                $token = trim(substr($token, strlen($keyword)));
+
+                if ($userId = $this->DB()->query('SELECT VALUE_ID FROM b_uts_user WHERE '.$this->getParameter()::USER_FIELD_CODE_API_TOKEN.'="'.$token.'" LIMIT 1')->fetch()['VALUE_ID']) {
+                    $access = true;
+                }
+            }
+        }
+
+        return $access;
+    }
 
     public function getCountryCode()
     {
@@ -210,12 +248,44 @@ class Init
 
     private function setHeaders()
     {
-        header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-        header('Access-Control-Allow-Headers: Content-Type');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization-Token');
 
         // Cross domain
         header('Access-Control-Allow-Origin: '.$_SERVER['SERVER_NAME']);
+
+        if ($this->getParameter()->getValue('USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER') == 'Y') {
+
+            $ar = $this->getParameter()->getValue('WHITE_LIST_DOMAIN_ACCESS_CONTROL_ALLOW_ORIGIN');
+
+            if (strpos($ar, '*') !== false) {
+
+                header('Access-Control-Allow-Origin: *');
+
+            } else {
+
+                $ar = explode(';', $ar);
+                $ar = array_diff($ar, ['']);
+
+                foreach ($ar as &$item) {
+
+                    $item = trim($item);
+
+                    if ($item == $_SERVER['HTTP_ORIGIN']) {
+
+                        header('Access-Control-Allow-Origin: '.$item);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    private function setHeadersPreQuery()
+    {
+        header('HTTP/1.0 200');
+        header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization-Token');
+        header('Access-Control-Max-Age: 604800'); // 7 days
 
         if ($this->getParameter()->getValue('USE_ACCESS_CONTROL_ALLOW_ORIGIN_FILTER') == 'Y') {
 
@@ -257,5 +327,11 @@ class Init
         }
 
         return $result;
+    }
+
+    // DB
+    private function DB()
+    {
+        return Application::getConnection();
     }
 }
