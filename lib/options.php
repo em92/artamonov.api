@@ -103,6 +103,11 @@ class Options
 
     // Additional method
 
+    public function getUserFieldCodeApiToken()
+    {
+        return self::USER_FIELD_CODE_API_TOKEN;
+    }
+
     public function userFieldToken($flag)
     {
         if ($flag == 'Y') {

@@ -197,7 +197,7 @@ class Init
 
                 $token = trim(substr($token, strlen($keyword)));
 
-                if ($userId = $this->DB()->query('SELECT VALUE_ID FROM b_uts_user WHERE '.$this->getParameter()::USER_FIELD_CODE_API_TOKEN.'="'.$token.'" LIMIT 1')->fetch()['VALUE_ID']) {
+                if ($userId = $this->DB()->query('SELECT VALUE_ID FROM b_uts_user WHERE '.$this->getParameter()->getUserFieldCodeApiToken().'="'.$token.'" LIMIT 1')->fetch()['VALUE_ID']) {
                     $access = true;
                 }
             }

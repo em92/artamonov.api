@@ -25,7 +25,7 @@ $geoIpExist = Api::checkLibraryAvailability(Api::GEOIP);
     <td width='55%' valign='middle'>
         <?
         echo InputType('checkbox', 'OPTION_USE_AUTH_TOKEN', 'Y', $options->getValue('USE_AUTH_TOKEN'));
-        ShowJSHint(Loc::getMessage('OPTION_AUTH_TOKEN_HINT', ['#FIELD_NAME_RESTFUL_API_TOKEN#' => $options::USER_FIELD_CODE_API_TOKEN], LANG));
+        ShowJSHint(Loc::getMessage('OPTION_AUTH_TOKEN_HINT', ['#FIELD_NAME_RESTFUL_API_TOKEN#' => $options->getUserFieldCodeApiToken()], LANG));
         ?>
     <td>
 </tr>
