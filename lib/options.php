@@ -4,8 +4,8 @@
 namespace Artamonov\Api;
 
 
-use \Bitrix\Main\Config\Option;
-use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Config\Option;
+use Bitrix\Main\Context;
 use CUserTypeEntity;
 use CUser;
 
@@ -14,22 +14,16 @@ class Options
     const MODULE_ID = 'artamonov.api';
     const FORM_NAME = 'options';
     const OPTION_CODE_PREFIX = 'OPTION_';
-
     const USER_FIELD_CODE_API_TOKEN = 'UF_RESTFUL_API_TOKEN';
 
     private $options;
 
-    // Options
-
     public function save($data)
     {
         $this->extractOptions($data);
-
         if ($ar = $this->getOptions()) {
             foreach ($ar as $code => $value) {
-
                 switch ($code) {
-
                     case 'WHITE_LIST_ADDRESS':
                         $value = str_replace([' ', 'http://', 'https://'], '', $value);
                         break;
@@ -39,8 +33,7 @@ class Options
                     default:
                         $value = trim($value);
                 }
-
-                Option::set($this->getModuleId(), $code, $value);
+                Option::set($this->getModuleId(), $code, $value, $this->getSiteId());
             }
             return true;
         }
@@ -55,7 +48,6 @@ class Options
     private function extractOptions($data)
     {
         $arResult = [];
-
         // Checkbox
         if (!isset($data['OPTION_ONLY_HTTPS_EXCHANGE'])) {
             $data['OPTION_ONLY_HTTPS_EXCHANGE'] = 'N';
@@ -63,22 +55,19 @@ class Options
         if (!isset($data['OPTION_USE_AUTH_TOKEN'])) {
             $data['OPTION_USE_AUTH_TOKEN'] = 'N';
         }
-
         // Update User field for token
         $this->userFieldToken($data['OPTION_USE_AUTH_TOKEN']);
-
         foreach ($data as $k => $v) {
-            if (preg_match('/^'.self::OPTION_CODE_PREFIX.'/', strtoupper($k))) {
+            if (preg_match('/^' . self::OPTION_CODE_PREFIX . '/', strtoupper($k))) {
                 $arResult[str_replace(self::OPTION_CODE_PREFIX, '', $k)] = $v;
             }
         }
-
-        $this->setOptions($arResult);
+        $this->options = $arResult;
     }
 
     public function getValue($option)
     {
-        return Option::get($this->getModuleId(), $option);
+        return Option::get($this->getModuleId(), $option, '', $this->getSiteId());
     }
 
     public function getModuleId()
@@ -96,12 +85,10 @@ class Options
         return $this->options;
     }
 
-    private function setOptions($options)
+    private function getSiteId()
     {
-        $this->options = $options;
+        return (Context::getCurrent()->getSite()) ? Context::getCurrent()->getSite() : 's1';
     }
-
-    // Additional method
 
     public function getUserFieldCodeApiToken()
     {
@@ -111,15 +98,14 @@ class Options
     public function userFieldToken($flag)
     {
         if ($flag == 'Y') {
-
-            // Create user field for token
-            $arFields = [
+            $obUserField = new CUserTypeEntity;
+            $obUserField->Add([
                 'ENTITY_ID' => 'USER',
                 'FIELD_NAME' => self::USER_FIELD_CODE_API_TOKEN,
                 'USER_TYPE_ID' => 'string',
                 'SORT' => 100,
                 'MULTIPLE' => 'N',
-                'MANDATORY' =>  'N',
+                'MANDATORY' => 'N',
                 'SHOW_FILTER' => 'I',
                 'SHOW_IN_LIST' => 'Y',
                 'EDIT_IN_LIST' => 'Y',
@@ -132,50 +118,24 @@ class Options
                     'MAX_LENGTH' => 0,
                     'DEFAULT_VALUE' => ''
                 ]
-            ];
-
-            $obUserField  = new CUserTypeEntity;
-            $obUserField->Add($arFields);
+            ]);
         }
     }
+
     public function generateTokens()
     {
         $user = new CUser();
         $counter = 0;
-
-        // Get list users with empty token field
-
-        $arFilter = [
-            'ACTIVE' => 'Y',
-            self::USER_FIELD_CODE_API_TOKEN => false
-        ];
-
-        $arSelect = [
-            'FIELDS' => ['ID', 'LOGIN']
-        ];
-
-        if ($users = CUser::GetList($by='ID', $order='DESC', $arFilter, $arSelect)) {
-
+        if ($users = CUser::GetList($by = 'ID', $order = 'DESC', [self::USER_FIELD_CODE_API_TOKEN => false, 'ACTIVE' => 'Y'], ['FIELDS' => ['ID', 'LOGIN']])) {
             while ($ar = $users->fetch()) {
-
-                $id = $ar['ID'];
-
                 // Set token for users
-
-                $token = md5($ar['ID'].'-'.$ar['LOGIN'].'='.date('Y-m-d H:i:s'));
+                $token = md5($ar['ID'] . '-' . $ar['LOGIN'] . '=' . date('Y-m-d H:i:s'));
                 $token = str_split($token, 8);
                 $token = implode('-', $token);
-
-                $arFields = [
-                    self::USER_FIELD_CODE_API_TOKEN => $token
-                ];
-
-                $user->update($id, $arFields);
-
+                $user->update($ar['ID'], [self::USER_FIELD_CODE_API_TOKEN => $token]);
                 $counter++;
             }
         }
-
         return $counter;
     }
 }

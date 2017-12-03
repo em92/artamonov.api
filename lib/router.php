@@ -12,111 +12,80 @@ class Router extends Init
     private static $action;
     private static $params;
 
-
-    // MAIN METHODS
-
-
     public function start()
     {
-        $path_parts = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-
+        $pathParts = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         // Api path
-        self::$apiPath = strtolower(current($path_parts));
-        array_shift($path_parts);
-
+        self::$apiPath = strtolower(current($pathParts));
+        array_shift($pathParts);
         // Get version
         if ($this->checkUseVersion()) {
-
-            if (current($path_parts)) {
-                self::$apiVersion = strtolower(current($path_parts));
-                array_shift($path_parts);
+            if (current($pathParts)) {
+                self::$apiVersion = strtolower(current($pathParts));
+                array_shift($pathParts);
             }
         }
-
         // Get controller
-        if (current($path_parts)) {
-
-            self::$controller = strtolower(current($path_parts));
-            array_shift($path_parts);
+        if (current($pathParts)) {
+            self::$controller = strtolower(current($pathParts));
+            array_shift($pathParts);
         }
-
         // Get action
-        if (current($path_parts)) {
-
-            self::$action = strtolower(current($path_parts));
-            array_shift($path_parts);
+        if (current($pathParts)) {
+            self::$action = strtolower(current($pathParts));
+            array_shift($pathParts);
         }
-
         // Get params
         switch (parent::getMethod()) {
-
             case 'GET':
-                if (count($path_parts) > 0) {
-                    // if original get-request
-                    if (strstr($_SERVER['REQUEST_URI'], '?', false) !== false) {
-
-                        $path_parts = $_SERVER['QUERY_STRING'];
-                        $path_parts = explode('&', $path_parts);
-
+                $requestUri = str_replace('/?', '?', $_SERVER['REQUEST_URI']);
+                if (strstr($requestUri, '?', false) !== false) {
+                    if (strstr(self::$action, '?', false) !== false) {
+                        self::$action = explode('?', self::$action)[0];
+                    }
+                    $pathParts = explode('?', $requestUri);
+                    $pathParts = ($pathParts[1]) ? explode('&', $pathParts[1]) : [];
+                    if ($pathParts) {
                         $tmp = [];
-
-                        foreach ($path_parts as $item) {
-
+                        foreach ($pathParts as $item) {
                             $item = explode('=', $item);
                             $tmp[urldecode($item[0])] = urldecode($item[1]);
                         }
-
-                        $path_parts = $tmp;
+                        $pathParts = $tmp;
                     }
                 }
                 break;
-
             case 'POST':
-                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
-                    $path_parts = json_decode(file_get_contents('php://input'), true);
-                } else {
-                    $path_parts = $_POST;
-                }
+                $pathParts = ($_SERVER['CONTENT_TYPE'] == 'application/json') ? json_decode(file_get_contents('php://input'), true) : $_POST;
                 break;
-
             case 'PUT':
                 if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
-                    $path_parts = json_decode(file_get_contents('php://input'), true);
+                    $pathParts = json_decode(file_get_contents('php://input'), true);
                 }
                 break;
-
             case 'DELETE':
                 if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
-                    $path_parts = json_decode(file_get_contents('php://input'), true);
+                    $pathParts = json_decode(file_get_contents('php://input'), true);
                 }
                 break;
-
             case 'OPTIONS':
                 if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
-                    $path_parts = json_decode(file_get_contents('php://input'), true);
+                    $pathParts = json_decode(file_get_contents('php://input'), true);
                 }
                 break;
         }
-
-        self::$params = $path_parts;
-
+        self::$params = (count($pathParts) > 0) ? $pathParts : [];
         // Run controller
         if ($this->getController() && $this->getAction()) {
-
             $controller = new Controller();
             $controller->run();
-
         } else {
-
             Response::BadRequest();
         }
-
         die();
     }
 
-
     // ADDITIONAL METHODS
-
 
     // PARAMETERS
 
@@ -124,22 +93,27 @@ class Router extends Init
     {
         return (parent::getParameter()->getValue('USE_VERSIONS') == 'Y') ? true : false;
     }
+
     public function getApiPath()
     {
         return self::$apiPath;
     }
+
     public function getApiVersion()
     {
         return self::$apiVersion;
     }
+
     public function getController()
     {
         return self::$controller;
     }
+
     public function getAction()
     {
         return self::$action;
     }
+
     public function getParameters()
     {
         return self::$params;
