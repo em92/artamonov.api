@@ -39,21 +39,29 @@ class Options
         }
     }
 
-    public function restore()
+    public function restore($data)
     {
-        Option::delete($this->getModuleId());
-        return true;
+        $this->extractOptions($data);
+        if ($ar = $this->getOptions()) {
+
+            foreach ($ar as $code => $value) {
+                Option::delete($this->getModuleId(), ['name' => $code]);
+            }
+            return true;
+        }
     }
 
     private function extractOptions($data)
     {
         $arResult = [];
         // Checkbox
-        if (!isset($data['OPTION_ONLY_HTTPS_EXCHANGE'])) {
-            $data['OPTION_ONLY_HTTPS_EXCHANGE'] = 'N';
-        }
-        if (!isset($data['OPTION_USE_AUTH_TOKEN'])) {
-            $data['OPTION_USE_AUTH_TOKEN'] = 'N';
+        if ($data['form'] == 'api-security') {
+            if (!isset($data['OPTION_ONLY_HTTPS_EXCHANGE'])) {
+                $data['OPTION_ONLY_HTTPS_EXCHANGE'] = 'N';
+            }
+            if (!isset($data['OPTION_USE_AUTH_TOKEN'])) {
+                $data['OPTION_USE_AUTH_TOKEN'] = 'N';
+            }
         }
         // Update User field for token
         $this->userFieldToken($data['OPTION_USE_AUTH_TOKEN']);
