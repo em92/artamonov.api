@@ -13,8 +13,8 @@ class artamonov_api extends CModule
         $this->MODULE_ID = 'artamonov.api';
         $this->MODULE_NAME = 'RESTful API';
         $this->MODULE_DESCRIPTION = 'Модуль помогает организовать API-интерфейс';
-        $this->MODULE_VERSION = '3.3.0';
-        $this->MODULE_VERSION_DATE = '2018-01-02 22:00:00';
+        $this->MODULE_VERSION = '3.4.0';
+        $this->MODULE_VERSION_DATE = '2018-01-03 09:00:00';
         $this->PARTNER_NAME = 'Артамонов Денис';
         $this->PARTNER_URI = 'http://artamonov.pro/';
     }
