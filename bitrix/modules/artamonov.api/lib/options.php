@@ -51,21 +51,29 @@ class Options
         }
     }
 
-    private function extractOptions($data)
+    private function extractOptions($ar)
     {
         $arResult = [];
         // Checkbox
-        if ($data['form'] == 'api-security') {
-            if (!isset($data['OPTION_ONLY_HTTPS_EXCHANGE'])) {
-                $data['OPTION_ONLY_HTTPS_EXCHANGE'] = 'N';
+        if ($ar['form'] == 'api-security') {
+            if (!isset($ar['OPTION_ONLY_HTTPS_EXCHANGE'])) {
+                $ar['OPTION_ONLY_HTTPS_EXCHANGE'] = 'N';
             }
-            if (!isset($data['OPTION_USE_AUTH_TOKEN'])) {
-                $data['OPTION_USE_AUTH_TOKEN'] = 'N';
+            if (!isset($ar['OPTION_USE_AUTH_TOKEN'])) {
+                $ar['OPTION_USE_AUTH_TOKEN'] = 'N';
+            }
+            if (!isset($ar['OPTION_USE_AUTH_BY_LOGIN_PASSWORD'])) {
+                $ar['OPTION_USE_AUTH_BY_LOGIN_PASSWORD'] = 'N';
+            }
+            if (!isset($ar['OPTION_USE_CHECK_USER_GROUP'])) {
+                $ar['OPTION_USE_CHECK_USER_GROUP'] = 'N';
             }
         }
+        // Array
+        $ar['OPTION_GROUP_LIST'] = (isset($ar['OPTION_GROUP_LIST'])) ? implode('|', $ar['OPTION_GROUP_LIST']) : '';
         // Update User field for token
-        $this->userFieldToken($data['OPTION_USE_AUTH_TOKEN']);
-        foreach ($data as $k => $v) {
+        $this->userFieldToken($ar['OPTION_USE_AUTH_TOKEN']);
+        foreach ($ar as $k => $v) {
             if (preg_match('/^' . self::OPTION_CODE_PREFIX . '/', strtoupper($k))) {
                 $arResult[str_replace(self::OPTION_CODE_PREFIX, '', $k)] = $v;
             }

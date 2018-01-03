@@ -22,12 +22,26 @@ class artamonov_api extends CModule
     function DoInstall()
     {
         RegisterModule($this->MODULE_ID);
+        $this->InstallFiles();
         $GLOBALS['APPLICATION']->IncludeAdminFile(Loc::getMessage('API_INSTALL_TITLE'), __DIR__ . '/step.php');
     }
 
     function DoUninstall()
     {
+        $this->UnInstallFiles();
         UnRegisterModule($this->MODULE_ID);
         $GLOBALS['APPLICATION']->IncludeAdminFile(Loc::getMessage('API_UNINSTALL_TITLE'), __DIR__ . '/unstep.php');
+    }
+
+    function InstallFiles()
+    {
+        CopyDirFiles(__DIR__ . '/admin', $_SERVER['DOCUMENT_ROOT'] . '/bitrix/admin', true, true);
+        return true;
+    }
+
+    function UnInstallFiles()
+    {
+        DeleteDirFiles(__DIR__ . '/admin', $_SERVER['DOCUMENT_ROOT'] . '/bitrix/admin');
+        return true;
     }
 }

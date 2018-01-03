@@ -4,8 +4,6 @@
 namespace Artamonov\Api;
 
 
-use Bitrix\Main\Application;
-
 class Init
 {
     const GEOIP = 'Geoip';
@@ -69,79 +67,8 @@ class Init
 
     private function checkFilters()
     {
-        return (!$this->checkToken() || !$this->checkFilterCountry() || !$this->checkFilterAddress() || !$this->checkAccessHttps()) ? false : true;
-    }
-
-    private function checkFilterCountry()
-    {
-        $access = true;
-        if ($this->getParameter()->getValue('USE_LIST_COUNTRY_FILTER') == 'Y') {
-            $ar = $this->getParameter()->getValue('WHITE_LIST_COUNTRY');
-            $ar = explode(';', $ar);
-            $ar = array_diff($ar, ['']);
-            foreach ($ar as &$item) {
-                $item = trim($item);
-                $item = strtoupper($item);
-            }
-            if (!in_array($this->getCountryCode(), $ar)) {
-                $access = false;
-            }
-        }
-        return $access;
-    }
-
-    private function checkFilterAddress()
-    {
-        $access = true;
-        if ($this->getParameter()->getValue('USE_BLACK_LIST_ADDRESS_FILTER') == 'Y') {
-            // Black list
-            $arBlack = $this->getParameter()->getValue('BLACK_LIST_ADDRESS');
-            $arBlack = explode(';', $arBlack);
-            $arBlack = array_diff($arBlack, ['']);
-            foreach ($arBlack as &$item) {
-                $item = trim($item);
-            }
-            if (in_array($this->getRealIpAddr(), $arBlack)) {
-                $access = false;
-            }
-        }
-        if ($this->getParameter()->getValue('USE_WHITE_LIST_ADDRESS_FILTER') == 'Y') {
-            // White list
-            $arWhite = $this->getParameter()->getValue('WHITE_LIST_ADDRESS');
-            $arWhite = explode(';', $arWhite);
-            $arWhite = array_diff($arWhite, ['']);
-            foreach ($arWhite as &$item) {
-                $item = trim($item);
-            }
-            $access = (in_array($this->getRealIpAddr(), $arWhite)) ? true : false;
-        }
-        return $access;
-    }
-
-    private function checkAccessHttps()
-    {
-        return ($this->getParameter()->getValue('ONLY_HTTPS_EXCHANGE') == 'Y' && $_SERVER['SERVER_PORT'] != 443) ? false : true;
-    }
-
-    private function checkToken()
-    {
-        $access = true;
-        if ($this->getParameter()->getValue('USE_AUTH_TOKEN') == 'Y') {
-            $access = false;
-            if ($_SERVER['HTTP_AUTHORIZATION_TOKEN']) {
-                $token = $_SERVER['HTTP_AUTHORIZATION_TOKEN'];
-                $keyword = str_replace(' ', '', $this->getParameter()->getValue('TOKEN_KEYWORD')) . ':';
-                $checkKeyword = substr($token, 0, strlen($keyword));
-                if ($checkKeyword != $keyword) {
-                    return false;
-                }
-                $token = trim(substr($token, strlen($keyword)));
-                if ($userId = $this->DB()->query('SELECT VALUE_ID FROM b_uts_user WHERE ' . $this->getParameter()->getUserFieldCodeApiToken() . '="' . $token . '" LIMIT 1')->fetch()['VALUE_ID']) {
-                    $access = true;
-                }
-            }
-        }
-        return $access;
+        $filter = new Filter($this->getParameter(), $this->getCountryCode(), $this->getRealIpAddr());
+        return $filter->check();
     }
 
     public function getCountryCode()
@@ -222,10 +149,5 @@ class Init
     public static function checkLibraryAvailability($libraryCode)
     {
         return array_search(strtolower($libraryCode), get_loaded_extensions()) ? true : false;
-    }
-
-    private function DB()
-    {
-        return Application::getConnection();
     }
 }

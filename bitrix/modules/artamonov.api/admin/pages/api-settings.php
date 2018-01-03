@@ -8,7 +8,7 @@ use Artamonov\Api\Options;
 Loc::loadMessages(__FILE__);
 
 $options = new Options();
-$FORM_NAME = 'api-support';
+$form = basename(__FILE__, '.php');
 
 $tabControl = new CAdminTabControl(
     'tabControl',
@@ -22,7 +22,7 @@ $APPLICATION->SetTitle(Loc::getMessage('TITLE'));
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php';
 
 if ($_POST) {
-    $_POST['form'] = $FORM_NAME;
+    $_POST['form'] = $form;
     if ($_POST['save']) {
         if ($options->save($_POST)) {
             echo CAdminMessage::ShowNote(Loc::getMessage('OPTIONS_SAVED'));
@@ -38,7 +38,7 @@ if ($_POST) {
 $tabControl->Begin();
 $tabControl->BeginNextTab();
 ?>
-    <form method='POST' name='<?=$FORM_NAME?>' action='<?=$APPLICATION->GetCurUri()?>'>
+    <form method='POST' name='<?=$form?>' action='<?=$APPLICATION->GetCurUri()?>'>
         <?=bitrix_sessid_post()?>
 
         <tr>
