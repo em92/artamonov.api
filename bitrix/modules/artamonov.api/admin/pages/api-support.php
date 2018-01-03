@@ -13,7 +13,8 @@ $form = basename(__FILE__, '.php');
 $tabControl = new CAdminTabControl(
     'tabControl',
     [
-        ['DIV' => 'tab-1', 'TAB' => Loc::getMessage('TAB_MAIN_TITLE')]
+        ['DIV' => 'tab-1', 'TAB' => Loc::getMessage('TAB_MAIN_TITLE')],
+        ['DIV' => 'tab-2', 'TAB' => Loc::getMessage('TAB_LOG_TITLE')]
     ]
 );
 
@@ -36,11 +37,10 @@ if ($_POST) {
 }
 
 $tabControl->Begin();
-$tabControl->BeginNextTab();
 ?>
     <form method='POST' name='<?=$form?>' action='<?=$APPLICATION->GetCurUri()?>'>
         <?=bitrix_sessid_post()?>
-
+        <?$tabControl->BeginNextTab()?>
         <tr>
             <td width='45%' valign='middle'><?=Loc::getMessage('SUPPORT_LINK_TITLE')?><td>
             <td width='55%' valign='middle'>
@@ -65,8 +65,15 @@ $tabControl->BeginNextTab();
             <td>
         </tr>
 
-        <tr><td colspan="4">&nbsp;</td></tr>
-        <tr><td colspan="4">&nbsp;</td></tr>
+        <tr>
+            <td width='45%' valign='middle'><?=Loc::getMessage('REWARD_LINK_TITLE')?><td>
+            <td width='55%' valign='middle'>
+                <a href="<?=Loc::getMessage('REWARD_LINK')?>" target="_blank"><?=Loc::getMessage('REWARD_LINK_TEXT')?></a>
+                <?ShowJSHint(Loc::getMessage('REWARD_LINK_HINT'))?>
+            <td>
+        </tr>
+
+        <?$tabControl->BeginNextTab()?>
 
         <tr>
             <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_SUPPORT_USE_LOG_TITLE')?><td>

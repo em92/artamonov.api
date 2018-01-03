@@ -1,6 +1,7 @@
 <?php
 $MESS['TITLE'] = 'Поддержка';
 $MESS['TAB_MAIN_TITLE'] = 'Основное';
+$MESS['TAB_LOG_TITLE'] = 'Логирование';
 
 $MESS['SUPPORT_LINK_TITLE'] = 'Вопросы и предложения по модулю';
 $MESS['SUPPORT_LINK'] = 'http://artamonov.pro';
@@ -16,6 +17,11 @@ $MESS['SUPPORT_FEEDBACK_LINK_TITLE'] = 'Отзывы';
 $MESS['SUPPORT_FEEDBACK_LINK'] = 'http://marketplace.1c-bitrix.ru/solutions/artamonov.api/#tab-rating-link';
 $MESS['SUPPORT_FEEDBACK_LINK_TEXT'] = 'Перейти';
 $MESS['SUPPORT_FEEDBACK_LINK_HINT'] = 'Не забывайте оставлять свои отзывы. У Вас это отнимет всего лишь 1-3 минуты, а для нас это большая мотивация к развитию и улучшению продукта.';
+
+$MESS['REWARD_LINK_TITLE'] = 'Вознаграждение';
+$MESS['REWARD_LINK'] = 'http://artamonov.pro/reward/';
+$MESS['REWARD_LINK_TEXT'] = 'Перейти';
+$MESS['REWARD_LINK_HINT'] = 'Небольшое вознаграждение за большой труд.';
 
 $MESS['OPTION_SUPPORT_USE_LOG_TITLE'] = 'Логирование входящих запросов';
 $MESS['OPTION_SUPPORT_USE_LOG_SELECT_TITLE_1'] = 'Отключено';
