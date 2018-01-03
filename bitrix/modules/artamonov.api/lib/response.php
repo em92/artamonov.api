@@ -13,12 +13,12 @@ class Response
         header('Content-Type: application/json; charset=utf-8');
     }
 
-    public static function ShowResult($data)
+    public static function ShowResult($data, $options = false)
     {
         self::setHeaders();
         header('HTTP/1.1 200');
 
-        $result = json_encode(['status' => 200, 'result' => $data]);
+        $result = json_encode(['status' => 200, 'result' => $data], $options);
 
         if ($error = self::ckeckError()) {
             header('HTTP/1.1 500');
