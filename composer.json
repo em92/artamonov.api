@@ -1,0 +1,12 @@
+{
+    "name": "artamonov/api",
+    "description": "RESTful API module for Bitrix",
+    "type": "module",
+    "authors": [
+        {
+            "name": "Artamonov Denis",
+            "email": "artamonov.ceo@gmail.com"
+        }
+    ],
+    "require": {}
+}
