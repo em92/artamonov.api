@@ -1,6 +1,7 @@
 {
     "name": "artamonov/api",
     "description": "RESTful API module for Bitrix",
+    "license": "MIT",
     "type": "module",
     "authors": [
         {
