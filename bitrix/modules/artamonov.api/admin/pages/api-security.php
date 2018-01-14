@@ -9,7 +9,7 @@ use Artamonov\Api\Options;
 
 Loc::loadMessages(__FILE__);
 
-Loader::IncludeModule('artamonov.api');
+Loader::includeModule('artamonov.api');
 
 $options = new Options();
 
