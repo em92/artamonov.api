@@ -6,8 +6,8 @@ namespace Artamonov\Api;
 
 use Bitrix\Main\Config\Option;
 use Bitrix\Main\Context;
-use CUserTypeEntity;
 use CUser;
+use CUserTypeEntity;
 
 class Options
 {

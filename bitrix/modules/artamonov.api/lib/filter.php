@@ -83,14 +83,9 @@ class Filter
                         WHERE
                             ' . $this->getParameter()->getUserFieldCodeApiToken() . '="' . $this->DB()->getSqlHelper()->forSql($token, 80) . '"                     
                         LIMIT 1';
-                if ($ar = $this->DB()->query($sql)->fetch()) {
-
-                    if ($this->getUserId() != $ar['VALUE_ID']) {
-                        $this->access = false;
-                    } else {
-                        $this->userId = $ar['VALUE_ID'];
-                        $this->access = true;
-                    }
+                if ($userId = $this->DB()->query($sql)->fetch()['VALUE_ID']) {
+                    $this->userId = $userId;
+                    $this->access = true;
                 }
             }
         }

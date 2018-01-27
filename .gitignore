@@ -1,1 +1,5 @@
 /*
+!/bitrix/modules/artamonov.api
+!.travis.yml
+!*.md
+!composer.json
