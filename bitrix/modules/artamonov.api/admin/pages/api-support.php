@@ -2,9 +2,9 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 
-use Artamonov\Api\Options;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
+use Artamonov\Api\Options;
 
 Loc::loadMessages(__FILE__);
 
@@ -68,14 +68,6 @@ $tabControl->Begin();
             <td>
         </tr>
 
-        <tr>
-            <td width='45%' valign='middle'><?=Loc::getMessage('REWARD_LINK_TITLE')?><td>
-            <td width='55%' valign='middle'>
-                <a href="<?=Loc::getMessage('REWARD_LINK')?>" target="_blank"><?=Loc::getMessage('REWARD_LINK_TEXT')?></a>
-                <?ShowJSHint(Loc::getMessage('REWARD_LINK_HINT'))?>
-            <td>
-        </tr>
-
         <?$tabControl->BeginNextTab()?>
 
         <tr>
@@ -93,7 +85,7 @@ $tabControl->Begin();
                     ]
                 ];
                 echo SelectBoxFromArray('OPTION_SUPPORT_USE_LOG', $ar, $options->getValue('SUPPORT_USE_LOG'), '', '', false, $options->getFormName());
-                ShowJSHint(Loc::getMessage('OPTION_SUPPORT_USE_LOG_HINT'));
+                ShowJSHint(Loc::getMessage('OPTION_SUPPORT_USE_LOG_HINT', ['#CURRENT_DATE#' => date('Y-m-d')]));
                 ?>
             <td>
         </tr>

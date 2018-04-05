@@ -2,10 +2,10 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 
-use Artamonov\Api\Init as Api;
-use Artamonov\Api\Options;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
+use Artamonov\Api\Init as Api;
+use Artamonov\Api\Options;
 
 Loc::loadMessages(__FILE__);
 

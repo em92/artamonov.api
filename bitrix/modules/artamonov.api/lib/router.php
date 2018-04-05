@@ -10,71 +10,61 @@ class Router extends Init
     private static $apiVersion;
     private static $controller;
     private static $action;
+    private static $pathParts;
     private static $params;
 
     public function start()
     {
-        $pathParts = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+        self::$pathParts = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         // Api path
-        self::$apiPath = strtolower(current($pathParts));
-        array_shift($pathParts);
+        self::$apiPath = strtolower(current(self::$pathParts));
+        array_shift(self::$pathParts);
         // Get version
         if ($this->checkUseVersion()) {
-            if (current($pathParts)) {
-                self::$apiVersion = strtolower(current($pathParts));
-                array_shift($pathParts);
+            if (current(self::$pathParts)) {
+                self::$apiVersion = strtolower(current(self::$pathParts));
+                array_shift(self::$pathParts);
             }
         }
         // Get controller
-        if (current($pathParts)) {
-            self::$controller = strtolower(current($pathParts));
-            array_shift($pathParts);
+        if (current(self::$pathParts)) {
+            self::$controller = strtolower(current(self::$pathParts));
+            array_shift(self::$pathParts);
         }
         // Get action
-        if (current($pathParts)) {
-            self::$action = strtolower(current($pathParts));
-            array_shift($pathParts);
+        if (current(self::$pathParts)) {
+            self::$action = strtolower(current(self::$pathParts));
+            array_shift(self::$pathParts);
         }
         // Get params
-        switch (parent::getMethod()) {
-            case 'GET':
-                $requestUri = str_replace('/?', '?', $_SERVER['REQUEST_URI']);
-                if (strstr($requestUri, '?', false) !== false) {
-                    if (strstr(self::$action, '?', false) !== false) {
-                        self::$action = explode('?', self::$action)[0];
-                    }
-                    $pathParts = explode('?', $requestUri);
-                    $pathParts = ($pathParts[1]) ? explode('&', $pathParts[1]) : [];
-                    if ($pathParts) {
-                        $tmp = [];
-                        foreach ($pathParts as $item) {
-                            $item = explode('=', $item);
-                            $tmp[urldecode($item[0])] = urldecode($item[1]);
-                        }
-                        $pathParts = $tmp;
-                    }
+        if (parent::getMethod() == Helper::GET) {
+            $this->getParamsRequestUri();
+        } elseif (parent::getMethod() == Helper::POST) {
+            $this->getParamsRequestUri();
+            if ($ar = (strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) ? json_decode(file_get_contents('php://input'), true) : $_POST) {
+                foreach ($ar as $param => $value) {
+                    self::$pathParts[$param] = $value;
                 }
-                break;
-            case 'POST':
-                $pathParts = ($_SERVER['CONTENT_TYPE'] == 'application/json') ? json_decode(file_get_contents('php://input'), true) : $_POST;
-                break;
-            case 'PUT':
-                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
-                    $pathParts = json_decode(file_get_contents('php://input'), true);
+            }
+        } elseif (
+            (
+                parent::getMethod() == Helper::PUT ||
+                parent::getMethod() == Helper::PATCH ||
+                parent::getMethod() == Helper::DELETE ||
+                parent::getMethod() == Helper::OPTIONS
+            ) &&
+            strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false
+        ) {
+            $this->getParamsRequestUri();
+            if ($ar = json_decode(file_get_contents('php://input'), true)) {
+                foreach ($ar as $param => $value) {
+                    self::$pathParts[$param] = $value;
                 }
-                break;
-            case 'DELETE':
-                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
-                    $pathParts = json_decode(file_get_contents('php://input'), true);
-                }
-                break;
-            case 'OPTIONS':
-                if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
-                    $pathParts = json_decode(file_get_contents('php://input'), true);
-                }
-                break;
+            }
+        } else {
+            Response::BadRequest();
         }
-        self::$params = (count($pathParts) > 0) ? $pathParts : [];
+        self::$params = (count(self::$pathParts) > 0) ? self::$pathParts : [];
         // Run controller
         if ($this->getController() && $this->getAction()) {
             $controller = new Controller();
@@ -117,5 +107,32 @@ class Router extends Init
     public function getParameters()
     {
         return self::$params;
+    }
+
+    private function getParamsRequestUri()
+    {
+        $_SERVER['REQUEST_URI'] = str_replace('/?', '?', $_SERVER['REQUEST_URI']);
+        if (strpos($_SERVER['REQUEST_URI'], '?') !== false) {
+            if (strpos(self::$action, '?') !== false) {
+                self::$action = explode('?', self::$action)[0];
+            }
+            array_pop(self::$pathParts);
+            if (count(self::$pathParts) > 1) {
+                foreach (self::$pathParts as $param => $value) {
+                    $tmp['get-parameter-' . $param] = $value;
+                }
+            } else {
+                $tmp = [];
+            }
+            self::$pathParts = explode('?', $_SERVER['REQUEST_URI']);
+            self::$pathParts = (self::$pathParts[1]) ? explode('&', self::$pathParts[1]) : [];
+            if (self::$pathParts) {
+                foreach (self::$pathParts as $item) {
+                    $item = explode('=', $item);
+                    $tmp[urldecode($item[0])] = urldecode($item[1]);
+                }
+                self::$pathParts = $tmp;
+            }
+        }
     }
 }

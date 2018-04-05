@@ -16,7 +16,7 @@ class Example
         $arResult = $this->getRequest();
         $arResult['IBLOCK_DATA'] = $this->getIblockData(1);
         $arResult['OPERATING_METHOD'] = 'OBJECT_ORIENTED';
-        Response::ShowResult($arResult);
+        Response::ShowResult($arResult, JSON_UNESCAPED_UNICODE);
     }
 
     // Get current request

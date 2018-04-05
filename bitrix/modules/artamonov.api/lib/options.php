@@ -6,8 +6,8 @@ namespace Artamonov\Api;
 
 use Bitrix\Main\Config\Option;
 use Bitrix\Main\Context;
-use CUser;
 use CUserTypeEntity;
+use CUser;
 
 class Options
 {
@@ -68,6 +68,9 @@ class Options
             if (!isset($ar['OPTION_USE_CHECK_USER_GROUP'])) {
                 $ar['OPTION_USE_CHECK_USER_GROUP'] = 'N';
             }
+        }
+        if (isset($ar['OPTION_OWN_CONTROLLERS_PATH'])) {
+            $ar['OPTION_OWN_CONTROLLERS_PATH'] = trim($ar['OPTION_OWN_CONTROLLERS_PATH'], '/');
         }
         // Array
         $ar['OPTION_GROUP_LIST'] = (isset($ar['OPTION_GROUP_LIST'])) ? implode('|', $ar['OPTION_GROUP_LIST']) : '';

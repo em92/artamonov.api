@@ -2,9 +2,9 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 
-use Artamonov\Api\Options;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
+use Artamonov\Api\Options;
 
 Loc::loadMessages(__FILE__);
 
@@ -16,7 +16,8 @@ $form = basename(__FILE__, '.php');
 $tabControl = new CAdminTabControl(
     'tabControl',
     [
-        ['DIV' => 'tab-1', 'TAB' => Loc::getMessage('TAB_MAIN_TITLE')]
+        ['DIV' => 'tab-1', 'TAB' => Loc::getMessage('TAB_MAIN_TITLE')],
+        ['DIV' => 'tab-2', 'TAB' => Loc::getMessage('TAB_CONTROLLERS_TITLE')]
     ]
 );
 
@@ -39,11 +40,10 @@ if ($_POST) {
 }
 
 $tabControl->Begin();
-$tabControl->BeginNextTab();
 ?>
     <form method='POST' name='<?=$form?>' action='<?=$APPLICATION->GetCurUri()?>'>
         <?=bitrix_sessid_post()?>
-
+        <?$tabControl->BeginNextTab()?>
         <tr>
             <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_USE_RESTFUL_API')?><td>
             <td width='55%' valign='middle'>
@@ -114,6 +114,36 @@ $tabControl->BeginNextTab();
                 echo SelectBoxFromArray('OPTION_OPERATING_MODE', $ar, $options->getValue('OPERATING_MODE'), '', '', false, $options->getFormName());
                 ShowJSHint(Loc::getMessage('OPTION_OPERATING_MODE_HINT'));
                 ?>
+            <td>
+        </tr>
+
+        <?$tabControl->BeginNextTab()?>
+
+        <tr>
+            <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_USE_OWN_CONTROLLERS_TITLE')?><td>
+            <td width='55%' valign='middle'>
+                <?
+                $ar = [
+                    'REFERENCE'    => [
+                        Loc::getMessage('OPTION_USE_OWN_CONTROLLERS_SELECT_TITLE_1'),
+                        Loc::getMessage('OPTION_USE_OWN_CONTROLLERS_SELECT_TITLE_2')
+                    ],
+                    'REFERENCE_ID' => [
+                        Loc::getMessage('OPTION_USE_OWN_CONTROLLERS_SELECT_ID_1'),
+                        Loc::getMessage('OPTION_USE_OWN_CONTROLLERS_SELECT_ID_2')
+                    ]
+                ];
+                echo SelectBoxFromArray('OPTION_USE_OWN_CONTROLLERS', $ar, $options->getValue('USE_OWN_CONTROLLERS'), '', '', false, $options->getFormName());
+                ShowJSHint(Loc::getMessage('OPTION_USE_OWN_CONTROLLERS_HINT'));
+                ?>
+            <td>
+        </tr>
+
+        <tr>
+            <td width='45%' valign='middle'><?=Loc::getMessage('OPTION_OWN_CONTROLLERS_PATH_TITLE')?><td>
+            <td width='55%' valign='middle'>
+                <input type='text' name='OPTION_OWN_CONTROLLERS_PATH' size='40' value='<?=$options->getValue('OWN_CONTROLLERS_PATH')?>'>
+                <?ShowJSHint(Loc::getMessage('OPTION_OWN_CONTROLLERS_PATH_HINT'))?>
             <td>
         </tr>
 
