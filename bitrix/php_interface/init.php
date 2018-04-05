@@ -1,8 +1,2 @@
 <?php
-use Bitrix\Main\Loader;
-use Artamonov\Api\Init as Api;
-
-if (Loader::includeModule('artamonov.api')) {
-    $api = new Api();
-    $api->start();
-}
+if (Bitrix\Main\Loader::includeModule('artamonov.api')) (new Artamonov\Api\Init)->start();
