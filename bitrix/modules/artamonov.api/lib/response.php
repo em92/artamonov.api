@@ -6,7 +6,7 @@ namespace Artamonov\Api;
 
 class Response
 {
-    private static function setHeaders()
+    protected static function setHeaders()
     {
         header('Powered: Artamonov Denis Pro 2016-'.date('Y'));
         header('Support: http://artamonov.pro');
@@ -15,7 +15,7 @@ class Response
 
     public static function ShowResult($data, $options = false)
     {
-        self::setHeaders();
+        static::setHeaders();
         header('HTTP/1.1 200');
 
         $result = json_encode(['status' => 200, 'result' => $data], $options);
@@ -31,7 +31,7 @@ class Response
 
     public static function NoResult($message = '')
     {
-        self::setHeaders();
+        static::setHeaders();
 
         $message = ($message) ? $message : 'No Result';
         header('HTTP/1.1 200');
@@ -41,7 +41,7 @@ class Response
 
     public static function BadRequest($message = '')
     {
-        self::setHeaders();
+        static::setHeaders();
 
         $message = ($message) ? $message : 'Bad Request';
         header('HTTP/1.1 400');
@@ -51,7 +51,7 @@ class Response
 
     public static function DenyAccess()
     {
-        self::setHeaders();
+        static::setHeaders();
         header('HTTP/1.1 403');
         echo json_encode(['status' => 403, 'error' => 'Forbidden']);
         die();
